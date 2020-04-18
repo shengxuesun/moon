@@ -2,7 +2,7 @@
 
 ---
 
-##### Auth
+##### Auth Sample
 位于`graphql/auth.graphql`
 
 . 获取验证码 `阿里云SMS`
