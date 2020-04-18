@@ -1,0 +1,15 @@
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+scalar Json @scalar(class: "MLL\\GraphQLScalars\\Json")
+
+type Org {
+    id: ID!
+    parent_id: Int!
+    info: Json!
+    auth: Json
+    created_by: Int!
+    created_at: DateTime!
+    updated_at: DateTime!
+    members: [User!]!
+    parent: Org
+    children: [Org!]!
+}

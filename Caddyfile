@@ -1,0 +1,26 @@
+0.0.0.0:3000 {
+    root /Users/kris/app/moon/public
+    fastcgi / 127.0.0.1:9000 php {
+        index index.php
+    }
+
+    # To handle .html extensions with laravel change ext to
+    # ext / .html
+
+    rewrite {
+        to {path} {path}/ /index.php?{query}
+    }
+    gzip
+    browse
+    log /Users/kris/app/log/caddy/access.log
+    errors /Users/kris/app/log/caddy/error.log
+    # Uncomment to enable TLS (HTTPS)
+    # Change the first list to listen on port 443 when enabling TLS
+    #tls self_signed
+
+    # To use Lets encrpt tls with a DNS provider uncomment these
+    # lines and change the provider as required
+    #tls {
+    #  dns cloudflare
+    #}
+}
