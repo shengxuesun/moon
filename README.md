@@ -2,7 +2,9 @@
 
 ---
 
-a) Auth
+##### Auth
+`graphql/auth.graphql`
+
 . 获取验证码
 ```
 input GetSmsCodeInput {
