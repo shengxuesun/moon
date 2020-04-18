@@ -1,10 +1,9 @@
 ### Moon Project
 
-hi@viirose.com
 ---
 
 a) Auth
-
+. 获取验证码
 ```
 input GetSmsCodeInput {
     device_id: String!
@@ -15,7 +14,9 @@ type SmsCodePayload {
     exsists: Boolean!
     success: Boolean!
 }
-
+```
+. 身份认证
+```
 input GetTokenInput {
     device_id: String!
     mobile: MobilePhone!
