@@ -19,4 +19,3 @@ type TokenPayload {
     abilities: String # 令牌能力
     access_token: String! # token
 }
-

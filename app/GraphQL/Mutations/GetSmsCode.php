@@ -34,7 +34,7 @@ class GetSmsCode
 
         Redis::setex($device_id, 300, $send);
 
-        SendSmsCodeJob::dispatch($send);
+        // SendSmsCodeJob::dispatch($send);
 
         $ex = User::where('ids->mobile->val',$mobile)->first();
 
