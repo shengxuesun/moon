@@ -46,19 +46,19 @@ class GetToken
             $user = User::create($new);
         }
 
-        // $name = $mobile;
-        // $abilities = ['server:auth'];
+        $name = $device_id;
+        $abilities = ['server:auth'];
 
         Redis::del($device_id);
-        // $access_token =  $user->createToken($name, $abilities)->plainTextToken;
-        return $user->createToken($device_id)->plainTextToken;
+        $access_token =  $user->createToken($name, $abilities)->plainTextToken;
+        // return $user->createToken($device_id)->plainTextToken;
 
 
-        // return [
-        //     'name' => $name,
-        //     'abilities' => $abilities,
-        //     'access_token' => $access_token,
-        // ];
+        return [
+            'name' => $name,
+            'abilities' => $abilities,
+            'access_token' => $access_token,
+        ];
 
     }
 }

@@ -12,7 +12,7 @@ type Query @middleware(checks: ["auth:sanctum"]) {
 
 type Mutation {
     getSmsCode(input: GetSmsCodeInput! @spread): SmsCodePayload! # 获取验证码
-    getToken(input: GetTokenInput! @spread): String! # 通过验证码获取token
+    getToken(input: GetTokenInput! @spread): TokenPayload! # 通过验证码获取token
 }
 
 #import auth.graphql
