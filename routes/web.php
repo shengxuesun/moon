@@ -17,14 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 Route::get('/', function () {
-    $device_id = "goodluck";
+    echo "Moon Project: April 2020";
+    // $device_id = "goodluck";
 
 
-    // Redis::setex($device_id, 300, $send);
+    // // Redis::setex($device_id, 300, $send);
 
-    $auth_info = Redis::get($device_id);
+    // $auth_info = Redis::get($device_id);
 
-    echo $auth_info;
+    // echo $auth_info;
 
     // $server_mobile = Str::before($auth_info, '-'
     // $server_code = Str::after($auth_info, '-');

@@ -46,13 +46,11 @@ class GetToken
             $user = User::create($new);
         }
 
+        Redis::del($device_id);
+
         $name = $device_id;
         $abilities = ['server:auth'];
-
-        Redis::del($device_id);
         $access_token =  $user->createToken($name, $abilities)->plainTextToken;
-        // return $user->createToken($device_id)->plainTextToken;
-
 
         return [
             'name' => $name,
