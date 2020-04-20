@@ -24,7 +24,7 @@ class SendSmsCodeJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($send)
+    public function __construct($send_array)
     {
         $this->region_id=config('moon.aliyun_sms.region_id');
         $this->access_key_id=config('moon.aliyun_sms.access_key_id');
@@ -33,8 +33,8 @@ class SendSmsCodeJob implements ShouldQueue
         $this->sign_name=config('moon.aliyun_sms.sign_name');
         $this->template_code=config('moon.aliyun_sms.template_code');
 
-        $this->mobile=$send['mobile'];
-        $this->code=$send['code'];
+        $this->mobile=$send_array['mobile'];
+        $this->code=$send_array['code'];
     }
 
     /**
