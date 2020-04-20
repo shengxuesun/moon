@@ -1,5 +1,5 @@
 scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
-scalar Json @scalar(class: "MLL\\GraphQLScalars\\Json")
+scalar Json
 scalar MobilePhone
 scalar SmsCode
 

@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 Route::get('/', function () {
-    echo "Moon Project: April 2020";
+    // echo "Moon Project: April 2020";
     // $device_id = "goodluck";
 
 
