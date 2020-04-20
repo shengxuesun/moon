@@ -1,9 +1,9 @@
 type User {
     id: ID!
-    # ids: Json!
-    # auth: Json
-    # info: Json
-    # org_ids: Json!
+    ids: Json!
+    auth: Json
+    info: Json
+    org_ids: Json!
     created_by: Int
     created_at: DateTime!
     updated_at: DateTime!
