@@ -2,9 +2,6 @@
 
 namespace App\GraphQL\Scalars;
 
-use GraphQL\Error\Error;
-use GraphQL\Utils\Utils;
-use Safe\Exceptions\JsonException;
 use GraphQL\Type\Definition\ScalarType;
 
 /**
@@ -12,64 +9,49 @@ use GraphQL\Type\Definition\ScalarType;
  */
 class Json extends ScalarType
 {
-        /**
+    /**
      * Serializes an internal value to include in a response.
+     *
+     * @param  mixed  $value
+     * @return mixed
      */
-    public function serialize($value): string
+    public function serialize($value)
     {
-        return \Safe\json_encode($value);
+        // Assuming the internal representation of the value is always correct
+        return $value;
+
+        // TODO validate if it might be incorrect
     }
 
     /**
-     * Parses an externally provided value (query variable) to use as an input.
+     * Parses an externally provided value (query variable) to use as an input
      *
-     * In the case of an invalid value this method must throw an Exception
-     *
-     *
-     * @throws Error
+     * @param  mixed  $value
+     * @return mixed
      */
     public function parseValue($value)
     {
-        return $this->decodeJSON($value);
+        // TODO implement validation
+
+        return $value;
     }
 
     /**
      * Parses an externally provided literal value (hardcoded in GraphQL query) to use as an input.
      *
-     * In the case of an invalid node or value this method must throw an Exception
+     * E.g.
+     * {
+     *   user(email: "user@example.com")
+     * }
      *
-     * @param Node $valueNode
-     * @param mixed[]|null $variables
-     *
-     * @throws Exception
+     * @param  \GraphQL\Language\AST\Node  $valueNode
+     * @param  mixed[]|null  $variables
+     * @return mixed
      */
     public function parseLiteral($valueNode, ?array $variables = null)
     {
-        if (!property_exists($valueNode, 'value')) {
-            throw new Error(
-                'Can only parse literals that contain a value, got '.Utils::printSafeJson($valueNode)
-            );
-        }
+        // TODO implement validation
 
-        return $this->decodeJSON($valueNode->value);
-    }
-
-    /**
-     * Try to decode a user-given value into JSON.
-     *
-     *
-     * @throws Error
-     */
-    protected function decodeJSON($value)
-    {
-        try {
-            $parsed = \Safe\json_decode($value);
-        } catch (JsonException $jsonException) {
-            throw new Error(
-                $jsonException->getMessage()
-            );
-        }
-
-        return $parsed;
+        return $valueNode->value;
     }
 }
