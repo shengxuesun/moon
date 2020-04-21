@@ -1,4 +1,4 @@
-scalar Json @scalar(class: "MLL\\GraphQLScalars\\Json")
+scalar Json
 
 type User {
     id: ID!
