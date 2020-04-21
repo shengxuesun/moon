@@ -150,16 +150,16 @@
         },
         {
             "name": "alibabacloud/sdk",
-            "version": "1.8.237",
+            "version": "1.8.241",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aliyun/openapi-sdk-php.git",
-                "reference": "a987606a917aae3082fd46d4c7ee3abd7fca2759"
+                "reference": "cf8451bd2205ebfc587189d724d5b2614e5d5fd3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aliyun/openapi-sdk-php/zipball/a987606a917aae3082fd46d4c7ee3abd7fca2759",
-                "reference": "a987606a917aae3082fd46d4c7ee3abd7fca2759",
+                "url": "https://api.github.com/repos/aliyun/openapi-sdk-php/zipball/cf8451bd2205ebfc587189d724d5b2614e5d5fd3",
+                "reference": "cf8451bd2205ebfc587189d724d5b2614e5d5fd3",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -386,7 +386,7 @@
                 "library",
                 "sdk"
             ],
-            "time": "2020-04-20T08:28:52+00:00"
+            "time": "2020-04-21T06:03:02+00:00"
         },
         {
             "name": "asm89/stack-cors",
@@ -1730,16 +1730,16 @@
         },
         {
             "name": "mll-lab/graphql-php-scalars",
-            "version": "v3.0.1",
+            "version": "v3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mll-lab/graphql-php-scalars.git",
-                "reference": "7aa49369c2191f4cab163184534ee78db5d32441"
+                "reference": "6eb777e54f9fb32f3005b4316b613d59550e2d2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mll-lab/graphql-php-scalars/zipball/7aa49369c2191f4cab163184534ee78db5d32441",
-                "reference": "7aa49369c2191f4cab163184534ee78db5d32441",
+                "url": "https://api.github.com/repos/mll-lab/graphql-php-scalars/zipball/6eb777e54f9fb32f3005b4316b613d59550e2d2a",
+                "reference": "6eb777e54f9fb32f3005b4316b613d59550e2d2a",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1757,16 +1757,12 @@
             },
             "require-dev": {
                 "ext-json": "*",
-                "phpstan/phpstan": "^0.12.11",
-                "phpunit/phpunit": "^8.5.2",
-                "psy/psysh": "^0.9.12",
+                "phpstan/phpstan": "^0.12.19",
+                "phpunit/phpunit": "^8.5.3",
                 "thecodingmachine/phpstan-safe-rule": "^1.0.0"
             },
             "type": "library",
             "autoload": {
-                "files": [
-                    "src/utils.php"
-                ],
                 "psr-4": {
                     "MLL\\GraphQLScalars\\": "src"
                 }
@@ -1786,7 +1782,7 @@
                 "graphql",
                 "php"
             ],
-            "time": "2020-04-13T14:41:04+00:00"
+            "time": "2020-04-20T20:26:56+00:00"
         },
         {
             "name": "mll-lab/laravel-graphql-playground",
