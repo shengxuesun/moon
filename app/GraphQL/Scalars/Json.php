@@ -1,81 +1,76 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\GraphQL\Scalars;
 
-use Exception;
 use GraphQL\Error\Error;
-use GraphQL\Language\AST\Node;
+use GraphQL\Utils\Utils;
 use GraphQL\Type\Definition\ScalarType;
-use GraphQL\Utils\Utils as GraphQLUtils;
-use Safe\Exceptions\JsonException;
+use GraphQL\Language\AST\StringValueNode;
 
-class JSON extends ScalarType
+/**
+ * Read more about scalars here http://webonyx.github.io/graphql-php/type-system/scalar-types/
+ */
+class Json extends ScalarType
 {
     /**
-     * The description that is used for schema introspection.
-     *
-     * @var string
-     */
-    public $description = 'Arbitrary data encoded in JavaScript Object Notation. See https://www.json.org/.';
-
-    /**
      * Serializes an internal value to include in a response.
+     *
+     * @param  mixed  $value
+     * @return mixed
      */
-    public function serialize($value): string
+    public function serialize($value)
     {
-        return \Safe\json_encode($value);
+        // Assuming the internal representation of the value is always correct
+        return $value;
     }
 
     /**
-     * Parses an externally provided value (query variable) to use as an input.
+     * Parses an externally provided value (query variable) to use as an input
      *
-     * In the case of an invalid value this method must throw an Exception
-     *
-     * @throws Error
+     * @param  mixed  $value
+     * @return mixed
      */
     public function parseValue($value)
     {
-        return $this->decodeJSON($value);
+        if(!$this->isJson($value)) {
+            throw new Error("Cannot represent following value as Json: " . Utils::printSafeJson($value));
+        }
+
+        return $value;
     }
 
     /**
      * Parses an externally provided literal value (hardcoded in GraphQL query) to use as an input.
      *
-     * In the case of an invalid node or value this method must throw an Exception
+     * E.g.
+     * {
+     *   user(email: "user@example.com")
+     * }
      *
-     * @param Node $valueNode
-     * @param mixed[]|null $variables
-     *
-     * @throws Exception
+     * @param  \GraphQL\Language\AST\Node  $valueNode
+     * @param  mixed[]|null  $variables
+     * @return mixed
      */
     public function parseLiteral($valueNode, ?array $variables = null)
     {
-        if (!property_exists($valueNode, 'value')) {
-            throw new Error(
-                'Can only parse literals that contain a value, got '.GraphQLUtils::printSafeJson($valueNode)
-            );
+        if (!$valueNode instanceof StringValueNode) {
+            throw new Error('Query error: Can only parse strings got: ' . $valueNode->kind, [$valueNode]);
         }
 
-        return $this->decodeJSON($valueNode->value);
+        if (!$this->isJson($valueNode->value))  {
+            throw new Error("Not a valid Json", [$valueNode]);
+        }
+
+        return $valueNode->value;
     }
 
     /**
-     * Try to decode a user-given value into JSON.
+     * 判断Json
      *
-     * @throws Error
+     * @return boolean
      */
-    protected function decodeJSON($value)
-    {
-        try {
-            $parsed = \Safe\json_decode($value);
-        } catch (JsonException $jsonException) {
-            throw new Error(
-                $jsonException->getMessage()
-            );
-        }
-
-        return $parsed;
+    private function isJson($string) {
+        json_decode($string);
+        return (json_last_error() == JSON_ERROR_NONE);
     }
 }
