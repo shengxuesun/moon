@@ -2,7 +2,7 @@ scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date
 scalar MobilePhone
 scalar SmsCode
 
-type Query {
+type Query @middleware(checks: ["auth:sanctum"]) {
     users: [User!]! @all
     user(id: ID @eq): User @find
     orgs: [Org!]! @all
